@@ -13,14 +13,13 @@ class CreateKardexTable extends Migration
     public function up()
     {
         Schema::create('kardex', function (Blueprint $table) {
-            $table->increments('id_kardex');
+            $table->increments('id');
             $table->string('nombres');
             $table->string('ap_paterno');
             $table->string('ap_materno');
             $table->string('ci', 8)->unique();
             $table->boolean('sexo');
             $table->boolean('estado');
-            $table->rememberToken();
             $table->timestamps();
         });
 

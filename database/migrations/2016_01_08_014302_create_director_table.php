@@ -13,10 +13,10 @@ class CreateDirectorTable extends Migration
     public function up()
     {
         Schema::create('director', function (Blueprint $table) {
-            $table->increments('id_director');
+            $table->increments('id');
             $table->integer('antiguedad');
             $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('Cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('Cascade');
             $table->timestamps();
         });
     }

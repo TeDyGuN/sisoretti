@@ -13,7 +13,7 @@ class CreateAulaTable extends Migration
     public function up()
     {
         Schema::create('aula', function (Blueprint $table) {
-            $table->increments('id_aula');
+            $table->increments('id');
             $table->string('nombre');
             $table->timestamps();
         });

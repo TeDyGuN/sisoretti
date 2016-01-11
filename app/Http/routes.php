@@ -34,9 +34,16 @@ Route::group(['prefix'=> 'sistema', 'namespace' => 'Sistema'], function()
 });
 Route::filter('is_admin', function()
 {
-    if(Auth::user()->type != 'Admin' ) return Redirect::to('/');
+    if(Auth::user()->tipo_usuario != 3 ) return Redirect::to('/');
 });
 Route::group(['before' => 'is_admin', 'prefix'=> 'admin', 'namespace' => 'Admin'], function()
 {
     Route::get('home', 'GeneralController@index');
+    Route::get('crear/admin', 'UsuarioController@admin');
+    Route::get('crear/docente', 'UsuarioController@docente');
+    Route::get('crear/secretaria', 'UsuarioController@secretaria');
+    Route::get('crear/estudiante', 'UsuarioController@estudiante');
+    Route::post('estudiante/save', 'UsuarioController@save_estudiante');
+    Route::get('crear/director', 'UsuarioController@director');
+    Route::get('modificar', 'UsuarioController@modificar');
 });

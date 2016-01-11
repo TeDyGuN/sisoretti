@@ -13,11 +13,11 @@ class CreateEstudianteTable extends Migration
     public function up()
     {
         Schema::create('estudiante', function (Blueprint $table) {
-            $table->increments('id_estudiante');
+            $table->increments('id');
             $table->integer('id_curso')->unsigned();
-            $table->foreign('id_curso')->references('id_curso')->on('curso')->onDelete('Cascade');
+            $table->foreign('id_curso')->references('id')->on('curso')->onDelete('Cascade');
             $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('Cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('Cascade');
             $table->timestamps();
         });
     }

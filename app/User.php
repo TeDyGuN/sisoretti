@@ -11,8 +11,8 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+    AuthorizableContract,
+    CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['email', 'password',  'tipo_usuario', 'id_kardex'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -36,4 +36,22 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function tipo()
+    {
+        switch ($this->tipo_usuario)
+        {
+            case 1:
+                return 'Estudiante';
+            case 2:
+                return 'Docente';
+            case 3:
+                return 'Administrador';
+            case 4:
+                return 'Director';
+            case 5:
+                return 'Secretarua';
+        }
+
+    }
 }

@@ -18,24 +18,24 @@ use Illuminate\Support\Facades\Input;
 class LoginController extends  Controller{
     public function loginExitoso()
     {
-        if(Auth::user()->type == 'Admin')
+        if(Auth::user()->tipo_usuario == 3)
         {
             return redirect('admin/home');
         }
-        elseif(Auth::user()->type == 'Tutor')
+        elseif(Auth::user()->tipo_usuario == 1)
         {
-            return redirect('tutor/home');
+            return redirect('estudiante/home');
         }
-        elseif(Auth::user()->type == 'Cursante')
+        elseif(Auth::user()->tipo_usuario == 2)
         {
-            return redirect('cursante/home');
+            return redirect('docente/home');
         }
     }
-    public function nuevoTrabajo()
+    /*public function nuevoTrabajo()
     {
         $result = \DB::table('lineaInvestigacion')
             ->select('id','Categoria')
             ->get();
         return view('pages/File', compact('result'));
-    }
+    }*/
 }

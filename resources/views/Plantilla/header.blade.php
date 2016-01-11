@@ -41,7 +41,7 @@
                     </ul>
                 </li>
                 <li class="dropdown user user-menu">
-                    <a href="{{ url('/logout') }}">
+                    <a href="{{ url('/auth/logout') }}">
                         <span class="hidden-xs">Salir</span>
                     </a>
                 </li>
