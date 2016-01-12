@@ -10,7 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+/*Route::filter('auth', function()
+{
+    if(Auth::check() && !Auth::user()->estado())
+        {
+            Auth::logout();
+            return Redirect::to('/');
+        }
 
+});*/
 Route::get('/', function () {
     return view('welcome');
 });
@@ -40,10 +48,49 @@ Route::group(['before' => 'is_admin', 'prefix'=> 'admin', 'namespace' => 'Admin'
 {
     Route::get('home', 'GeneralController@index');
     Route::get('crear/admin', 'UsuarioController@admin');
+    Route::post('admin/save', 'UsuarioController@save_admin');
     Route::get('crear/docente', 'UsuarioController@docente');
+    Route::post('docente/save', 'UsuarioController@save_docente');
     Route::get('crear/secretaria', 'UsuarioController@secretaria');
+    Route::post('secretaria/save', 'UsuarioController@save_secre');
     Route::get('crear/estudiante', 'UsuarioController@estudiante');
     Route::post('estudiante/save', 'UsuarioController@save_estudiante');
     Route::get('crear/director', 'UsuarioController@director');
+    Route::post('director/save', 'UsuarioController@save_director');
     Route::get('modificar', 'UsuarioController@modificar');
+});
+Route::filter('is_estudiante', function()
+{
+    if(Auth::user()->tipo() != 'Estudiante' ) return Redirect::to('/');
+});
+Route::group(['before' => 'is_estudiante', 'prefix'=> 'estudiante', 'namespace' => 'Estudiante'], function()
+{
+    Route::get('home', 'EstudianteController@index');
+});
+
+Route::filter('is_docente', function()
+{
+    if(Auth::user()->tipo() != 'Docente' ) return Redirect::to('/');
+});
+Route::group(['before' => 'is_docente', 'prefix'=> 'docente', 'namespace' => 'Docente'], function()
+{
+    Route::get('home', 'DocenteController@index');
+});
+
+Route::filter('is_director', function()
+{
+    if(Auth::user()->tipo() != 'Director' ) return Redirect::to('/');
+});
+Route::group(['before' => 'is_director', 'prefix'=> 'director', 'namespace' => 'Director'], function()
+{
+    Route::get('home', 'DirectorController@index');
+})
+
+;Route::filter('is_secre', function()
+{
+    if(Auth::user()->tipo() != 'Secretaria' ) return Redirect::to('/');
+});
+Route::group(['before' => 'is_secre', 'prefix'=> 'secretaria', 'namespace' => 'Secretaria'], function()
+{
+    Route::get('home', 'SecretariaController@index');
 });

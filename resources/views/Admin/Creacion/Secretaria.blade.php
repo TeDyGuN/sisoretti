@@ -4,7 +4,7 @@
     <section class="content-header" xmlns="http://www.w3.org/1999/html">
         <h1 class="colorazul">
             SIS|TRAIN
-            <small class="colorazul">Creacion de Usuarios</small>
+            <small class="colorazul">Creacion de Secretaria</small>
         </h1>
     </section>
 @endsection
@@ -14,7 +14,7 @@
         <div class="row" >
             <div class="">
                 <div class="panel panel-default" id="headeremi">
-                    <div class="panel-heading text-center ">Creacion de Usuario</div>
+                    <div class="panel-heading text-center ">Creacion de Secretaria</div>
                     <div class="panel-body">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -26,30 +26,30 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="post" class="form-horizontal" enctype="multipart/form-data" role="form"  action="{{ url('admin/usuario/save')  }}"  >
+                        <form method="post" class="form-horizontal" enctype="multipart/form-data" role="form"  action="{{ url('admin/secretaria/save')  }}"  >
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
-                                <label for="titulo" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Nombres</label>
+                                <label for="nombres" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Nombres</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="titulo" name="nombres"  required>
+                                    <input type="text" class="form-control" id="nombres" name="nombres"  required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="titulo" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Apellido Paterno</label>
+                                <label for="father" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Apellido Paterno</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="titulo" name="father"  required>
+                                    <input type="text" class="form-control" id="father" name="father"  required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="titulo" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Apellido Materno</label>
+                                <label for="mother" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Apellido Materno</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="titulo" name="mother" >
+                                    <input type="text" class="form-control" id="mother" name="mother" >
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="titulo" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Email</label>
+                                <label for="email" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Email</label>
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" id="titulo" name="email"  required>
+                                    <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -59,56 +59,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="tutor" class="col-md-4 control-label colorazul" style="font-size: 1.2em">Tipo de Usuario</label>
+                                <label class="col-md-4 control-label colorazul" style="font-size: 1.2em">Sexo</label>
                                 <div class="col-md-6">
-                                    <select class="form-control" name="type">
-                                        <option value="Admin">Administrador</option>
-                                        <option value="Cursante">Estudiante</option>
-                                        <option value="Tutor">Tutor</option>
+                                    <select class="form-control" name="sexo">
+                                        <option value="1">Masculino</option>
+                                        <option value="0">Femenino</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="tutor" class="col-md-4 control-label colorazul" style="font-size: 1.2em">Personal</label>
-                                <div class="col-md-6" id="milico">
-                                    <select class="form-control" name="personal">
-                                        <option value="civil">Civil</option>
-                                        <option value="militar" selected="selected">Militar</option>
-                                    </select>
+                                <label for="ant" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Antiguedad</label>
+                                <div class="col-md-3">
+                                    <input type="number" min="0" max="20" step="1" value="1" class="form-control" id="ant" name="ant">
                                 </div>
-                            </div>
-                            <div id="militar">
-                                <div class="form-group">
-                                    <label for="tutor" class="col-md-4 control-label colorazul" style="font-size: 1.2em">Fuerza</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control" name="fuerza" id="fue">
-                                            <option value="Ejercito">Ejercito</option>
-                                            <option value="Armada">Armada</option>
-                                            <option value="Fuerza Aerea">Fuerza Aerea</option>
-                                            <option value="null" hidden>null</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="tutor" class="col-md-4 control-label colorazul" style="font-size: 1.2em">Grado</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control" name="grado" id="grado">
-                                            <option value="Coronel">Coronel</option>
-                                            <option value="Teniente Coronel">Teniente Coronel</option>
-                                            <option value="Mayor">Mayor</option>
-                                            <option value="Capitan Navio">Capitan Navio</option>
-                                            <option value="Capitan Fragata">Capitan Fragata</option>
-                                            <option value="Capitan Corbeta">Capitan Corbeta</option>
-                                            <option value="null" hidden>null</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="titulo" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Especialidad</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="esp" name="esp">
-                                    </div>
+                                <div class="col-md-3">
+                                    <label class="col-md-4 " style="font-size: 1.2em">Años</label>
                                 </div>
                             </div>
                             <div class="">

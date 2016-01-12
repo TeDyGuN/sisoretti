@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
 class UsersAdminSeeder extends Seeder
 {
     /**
@@ -18,23 +17,66 @@ class UsersAdminSeeder extends Seeder
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('Cascade');
             $table->timestamps();
         });*/
-        \DB::table('kardex')->insert(array(
-            'nombres'       => 'Admin',
-            'ap_paterno'    => ' ',
-            'ap_materno'    => ' ',
-            'ci'            => '55555',
-            'sexo'          => true,
-            'estado'        => true,
-        ));
-        \DB::table('users')->insert(array(
-            'email'         => 'admin@admin.com',
-            'password'      => \Hash::make('GORETTI2016'),
-            'tipo_usuario'  => 3,
-            'id_kardex'     => 1,
-        ));
-        \DB::table('administrador')->insert(array(
-            'antiguedad'   => 0,
-            'id_user'      => 1,
-        ));
+        $faker = Faker::create();
+        \DB::table('kardex')->insert([
+            [
+                'nombres'       => 'Admin',
+                'ap_paterno'    => ' ',
+                'ap_materno'    => ' ',
+                'ci'            => '33331',
+                'sexo'          => true,
+                'estado'        => true,
+            ],
+            [
+                'nombres'       => $faker->firstName,
+                'ap_paterno'    => $faker->lastName,
+                'ap_materno'    => ' ',
+                'ci'            => '33332',
+                'sexo'          => true,
+                'estado'        => true,
+            ],
+            [
+                'nombres'       => $faker->firstName,
+                'ap_paterno'    => $faker->lastName,
+                'ap_materno'    => ' ',
+                'ci'            => '33333',
+                'sexo'          => true,
+                'estado'        => true,
+            ],
+        ]);
+        \DB::table('users')->insert([
+            [
+                'email'         => 'admin@admin.com',
+                'password'      => \Hash::make('33331'),
+                'tipo_usuario'  => 3,
+                'id_kardex'     => 1,
+            ],
+            [
+                'email'         => '33332@gmail.com',
+                'password'      => \Hash::make('33332'),
+                'tipo_usuario'  => 3,
+                'id_kardex'     => 2,
+            ],
+            [
+                'email'         => '33333@gmail.com',
+                'password'      => \Hash::make('33333'),
+                'tipo_usuario'  => 3,
+                'id_kardex'     => 3,
+            ],
+        ]);
+        \DB::table('administrador')->insert([
+            [
+                'antiguedad'   => 2,
+                'id_user'      => 1,
+            ],
+            [
+                'antiguedad'   => 1,
+                'id_user'      => 2,
+            ],
+            [
+                'antiguedad'   => 3,
+                'id_user'      => 3,
+            ],
+        ]);
     }
 }

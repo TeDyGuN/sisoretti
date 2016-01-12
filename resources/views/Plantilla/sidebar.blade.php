@@ -9,7 +9,7 @@
                 <img src="{{ asset('dist/img/user2-160x160.png') }}" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p>{{ \App\Kardex::find(Auth::user()->id)->paterno() }}</p>
+                <p>{{ Auth::user()->paterno() }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> {{ Auth::user()->tipo() }}</a>
             </div>
         </div>
@@ -35,6 +35,13 @@
                         <li><a href="{{ url('admin/crear/estudiante') }}"><i class="fa fa-circle-o"></i>Crear Estudiante</a></li>
                         <li><a href="{{ url('admin/modificar') }}"><i class="fa fa-circle-o"></i>Modificar Usuario</a></li>
                     </ul>
+                </li>
+            @endif
+            @if(Auth::user()->tipo()=='Estudiante')
+                <li>
+                    <a href="{{ url('sistema/documentacion') }}">
+                        <i class="fa fa-book"></i> <span>Notas</span>
+                    </a>
                 </li>
             @endif
         </ul>

@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Secretaria;
+use App\Kardex;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
@@ -50,8 +52,36 @@ class User extends Model implements AuthenticatableContract,
             case 4:
                 return 'Director';
             case 5:
-                return 'Secretarua';
+                return 'Secretaria';
         }
-
     }
+    public function paterno()
+    {
+        $datos = Kardex::select('nombres', 'ap_paterno')
+                ->where('id', '=', $this->id_kardex)
+                ->get();
+        return $datos[0]->nombres.' '.$datos[0]->ap_paterno;
+    }
+    public function apellido()
+    {
+        $datos = Kardex::select('nombres', 'ap_paterno', 'ap_materno')
+            ->where('id', '=', $this->id_kardex)
+            ->get();
+        return $datos[0]->nombres.' '.$datos[0]->ap_paterno.' '.$datos[0]->ap_materno;
+    }
+    public function ci()
+    {
+        $datos = Kardex::select('ci')
+            ->where('id', '=', $this->id_kardex)
+            ->get();
+        return $datos[0]->ci;
+    }
+    public function estado()
+    {
+        $datos = Kardex::select('estado')
+            ->where('id', '=', $this->id_kardex)
+            ->get();
+        return $datos[0]->estado;
+    }
+
 }

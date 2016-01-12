@@ -9,10 +9,14 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Admin;
+use App\Director;
 use App\Estudiante;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Kardex;
+use App\Docente;
+use App\Secretaria;
 use app\User;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
@@ -29,17 +33,137 @@ class UsuarioController extends Controller
     {
         return view('Admin/Creacion/Director');
     }
+    public function save_director(Request $request)
+    {
+        $k = new Kardex;
+        $k->nombres          = $request->nombres;
+        $k->ap_paterno       = $request->father;
+        $k->ap_materno       = $request->mother;
+        $k->ci               = $request->ci;
+        $k->sexo             = $request->sexo;
+        $k->estado           = 1;
+        $k->save();
+
+        $user_id = Kardex::select('id')
+            ->where('ci','=',$request->ci)
+            ->get();
+        $u = new User;
+        $u->email            = $request->email;
+        $u->password         = \Hash::make($request->ci);
+        $u->tipo_usuario     = 4;
+        $u->id_kardex        = $user_id[0]->id;
+        $u->save();
+
+        $st_id = User::select('id')
+            ->where('email', '=', $request->email)
+            ->get();
+        $e = new Director();
+        $e->antiguedad    = $request->ant;
+        $e->id_user     = $st_id[0]->id;
+        $e->save();
+        return Redirect::back()->with(['success' => ' ']);
+    }
     public function secretaria()
     {
         return view('Admin/Creacion/Secretaria');
+    }
+    public function save_secre(Request $request)
+    {
+        $k = new Kardex;
+        $k->nombres          = $request->nombres;
+        $k->ap_paterno       = $request->father;
+        $k->ap_materno       = $request->mother;
+        $k->ci               = $request->ci;
+        $k->sexo             = $request->sexo;
+        $k->estado           = 1;
+        $k->save();
+
+        $user_id = Kardex::select('id')
+            ->where('ci','=',$request->ci)
+            ->get();
+        $u = new User;
+        $u->email            = $request->email;
+        $u->password         = \Hash::make($request->ci);
+        $u->tipo_usuario     = 5;
+        $u->id_kardex        = $user_id[0]->id;
+        $u->save();
+
+        $st_id = User::select('id')
+            ->where('email', '=', $request->email)
+            ->get();
+        $e = new Secretaria();
+        $e->antiguedad    = $request->ant;
+        $e->id_user     = $st_id[0]->id;
+        $e->save();
+        return Redirect::back()->with(['success' => ' ']);
     }
     public function admin()
     {
         return view('Admin/Creacion/Administrador');
     }
+    public function save_admin(Request $request)
+    {
+        $k = new Kardex;
+        $k->nombres          = $request->nombres;
+        $k->ap_paterno       = $request->father;
+        $k->ap_materno       = $request->mother;
+        $k->ci               = $request->ci;
+        $k->sexo             = $request->sexo;
+        $k->estado           = 1;
+        $k->save();
+
+        $user_id = Kardex::select('id')
+            ->where('ci','=',$request->ci)
+            ->get();
+        $u = new User;
+        $u->email            = $request->email;
+        $u->password         = \Hash::make($request->ci);
+        $u->tipo_usuario     = 3;
+        $u->id_kardex        = $user_id[0]->id;
+        $u->save();
+
+        $st_id = User::select('id')
+            ->where('email', '=', $request->email)
+            ->get();
+        $e = new Admin();
+        $e->antiguedad    = $request->ant;
+        $e->id_user     = $st_id[0]->id;
+        $e->save();
+        return Redirect::back()->with(['success' => ' ']);
+    }
     public function docente()
     {
         return view('Admin/Creacion/Docente');
+    }
+    public function save_docente(Request $request)
+    {
+        $k = new Kardex;
+        $k->nombres          = $request->nombres;
+        $k->ap_paterno       = $request->father;
+        $k->ap_materno       = $request->mother;
+        $k->ci               = $request->ci;
+        $k->sexo             = $request->sexo;
+        $k->estado           = 1;
+        $k->save();
+
+        $user_id = Kardex::select('id')
+            ->where('ci','=',$request->ci)
+            ->get();
+        $u = new User;
+        $u->email            = $request->email;
+        $u->password         = \Hash::make($request->ci);
+        $u->tipo_usuario     = 2;
+        $u->id_kardex        = $user_id[0]->id;
+        $u->save();
+
+        $st_id = User::select('id')
+            ->where('email', '=', $request->email)
+            ->get();
+        $e = new Docente();
+        $e->antiguedad    = $request->ant;
+        $e->id_user     = $st_id[0]->id;
+        $e->save();
+        return Redirect::back()->with(['success' => ' ']);
     }
     public function estudiante()
     {

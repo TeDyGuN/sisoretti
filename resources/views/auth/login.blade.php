@@ -9,7 +9,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
                         {!! csrf_field() !!}
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Direccion de Correo Electronico</label>
 
@@ -35,9 +34,14 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
+
+                                @if($errors->any())
+                                    <span class="help-block">
+                                        <strong class="text-center">{{$errors->first()}}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
