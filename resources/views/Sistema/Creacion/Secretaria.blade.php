@@ -1,10 +1,10 @@
-@extends('Plantilla/plantilla')
+@extends('Plantilla.plantilla')
 @section('titulo', 'Creacion de Usuario')
 @section('headerpage')
     <section class="content-header" xmlns="http://www.w3.org/1999/html">
         <h1 class="colorazul">
             SIS|TRAIN
-            <small class="colorazul">Creacion de Usuarios</small>
+            <small class="colorazul">Creacion de Secretaria</small>
         </h1>
     </section>
 @endsection
@@ -14,7 +14,7 @@
         <div class="row" >
             <div class="">
                 <div class="panel panel-default" id="headeremi">
-                    <div class="panel-heading text-center ">Creacion de Nuevo Estudiante</div>
+                    <div class="panel-heading text-center ">Creacion de Secretaria</div>
                     <div class="panel-body">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -26,7 +26,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="post" class="form-horizontal" enctype="multipart/form-data" role="form"  action="{{ url('admin/estudiante/save')  }}"  >
+                        <form method="post" class="form-horizontal" enctype="multipart/form-data" role="form"  action="{{ url('sistema/secretaria/save')  }}"  >
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label for="nombres" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Nombres</label>
@@ -68,22 +68,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  class="col-md-4 control-label colorazul" style="font-size: 1.2em">Curso</label>
-                                <div class="col-md-6" id="curso">
-                                    <select class="form-control" name="curso">
-                                        <option value="1">1° Primaria</option>
-                                        <option value="2">2° Primaria</option>
-                                        <option value="3">3° Primaria</option>
-                                        <option value="4">4° Primaria</option>
-                                        <option value="5">5° Primaria</option>
-                                        <option value="6">6° Primaria</option>
-                                        <option value="7">1° Secundaria</option>
-                                        <option value="8">2° Secundaria</option>
-                                        <option value="9">3° Secundaria</option>
-                                        <option value="10">4° Secundaria</option>
-                                        <option value="11">5° Secundaria</option>
-                                        <option value="12">6° Secundaria</option>
-                                    </select>
+                                <label for="ant" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Antiguedad</label>
+                                <div class="col-md-3">
+                                    <input type="number" min="0" max="20" step="1" value="1" class="form-control" id="ant" name="ant">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-md-4 " style="font-size: 1.2em">Años</label>
                                 </div>
                             </div>
                             <div class="">
@@ -96,7 +86,7 @@
                         {{$success = Session::get('success')}}
                         @if ($success)
                             <div class="alert alert-success">
-                                <strong>!!Felicidades!!</strong>Se Creo el Estudiante Correctamente <br><br>
+                                <strong>!!Felicidades!!</strong>Se Creo el usuario Correctamente <br><br>
                             </div>
                         @endif
                     </div>

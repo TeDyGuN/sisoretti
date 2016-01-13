@@ -28,12 +28,30 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ url('admin/crear/admin') }}"><i class="fa fa-circle-o"></i>Crear Administrador</a></li>
-                        <li><a href="{{ url('admin/crear/director') }}"><i class="fa fa-circle-o"></i>Crear Director</a></li>
-                        <li><a href="{{ url('admin/crear/secretaria') }}"><i class="fa fa-circle-o"></i>Crear Secretaria</a></li>
-                        <li><a href="{{ url('admin/crear/docente') }}"><i class="fa fa-circle-o"></i>Crear Docente</a></li>
-                        <li><a href="{{ url('admin/crear/estudiante') }}"><i class="fa fa-circle-o"></i>Crear Estudiante</a></li>
-                        <li><a href="{{ url('admin/modificar') }}"><i class="fa fa-circle-o"></i>Modificar Usuario</a></li>
+                        <li><a href="{{ url('sistema/crear/admin') }}"><i class="fa fa-circle-o"></i>Crear Administrador</a></li>
+                        <li><a href="{{ url('sistema/crear/director') }}"><i class="fa fa-circle-o"></i>Crear Director</a></li>
+                        <li><a href="{{ url('sistema/crear/secretaria') }}"><i class="fa fa-circle-o"></i>Crear Secretaria</a></li>
+                        <li><a href="{{ url('sistema/crear/docente') }}"><i class="fa fa-circle-o"></i>Crear Docente</a></li>
+                        <li><a href="{{ url('sistema/crear/estudiante') }}"><i class="fa fa-circle-o"></i>Crear Estudiante</a></li>
+                        <li><a href="{{ url('sistema/modificar') }}"><i class="fa fa-circle-o"></i>Modificar Usuario</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-mortar-board "></i><span>Gestion Academica</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/aula') }}"><i class="fa fa-circle-o"></i>Crear Aula</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/curso') }}"><i class="fa fa-circle-o"></i>Crear Curso</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/materia') }}"><i class="fa fa-circle-o"></i>Crear Materia</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/asignar/docente') }}"><i class="fa fa-circle-o"></i>Asignar Docente</a></li>
                     </ul>
                 </li>
             @endif
@@ -43,6 +61,71 @@
                         <i class="fa fa-book"></i> <span>Notas</span>
                     </a>
                 </li>
+            @endif
+            @if(Auth::user()->tipo()=='Director')
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-user"></i><span>Gestion de Usuario</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/secretaria') }}"><i class="fa fa-circle-o"></i>Crear Secretaria</a></li>
+                        <li><a href="{{ url('sistema/crear/docente') }}"><i class="fa fa-circle-o"></i>Crear Docente</a></li>
+                        <li><a href="{{ url('sistema/crear/estudiante') }}"><i class="fa fa-circle-o"></i>Crear Estudiante</a></li>
+                        <li><a href="{{ url('sistema/modificar') }}"><i class="fa fa-circle-o"></i>Modificar Usuario</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-mortar-board "></i><span>Gestion Academica</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/aula') }}"><i class="fa fa-circle-o"></i>Crear Aula</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/curso') }}"><i class="fa fa-circle-o"></i>Crear Curso</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/materia') }}"><i class="fa fa-circle-o"></i>Crear Materia</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/asignar/docente') }}"><i class="fa fa-circle-o"></i>Asignar Docente</a></li>
+                    </ul>
+                </li>
+            @endif
+            @if(Auth::user()->tipo()=='Secretaria')
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-user"></i><span>Gestion de Usuario</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/docente') }}"><i class="fa fa-circle-o"></i>Crear Docente</a></li>
+                        <li><a href="{{ url('sistema/crear/estudiante') }}"><i class="fa fa-circle-o"></i>Crear Estudiante</a></li>
+                        <li><a href="{{ url('sistema/modificar') }}"><i class="fa fa-circle-o"></i>Modificar Usuario</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-mortar-board "></i><span>Gestion Academica</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/aula') }}"><i class="fa fa-circle-o"></i>Crear Aula</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/curso') }}"><i class="fa fa-circle-o"></i>Crear Curso</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/crear/materia') }}"><i class="fa fa-circle-o"></i>Crear Materia</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('sistema/asignar/docente') }}"><i class="fa fa-circle-o"></i>Asignar Docente</a></li>
+                    </ul>
+                </li>
+            @endif
+            @if(Auth::user()->tipo()=='Docente')
             @endif
         </ul>
     </section>

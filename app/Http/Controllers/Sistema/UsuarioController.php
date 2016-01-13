@@ -6,7 +6,7 @@
  * Time: 4:09 p.m.
  */
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Sistema;
 
 
 use App\Admin;
@@ -17,7 +17,7 @@ use App\Http\Controllers\Controller;
 use App\Kardex;
 use App\Docente;
 use App\Secretaria;
-use app\User;
+use App\User;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -31,7 +31,7 @@ class UsuarioController extends Controller
 {
     public function director()
     {
-        return view('Admin/Creacion/Director');
+        return view('Sistema/Creacion/Director');
     }
     public function save_director(Request $request)
     {
@@ -65,7 +65,7 @@ class UsuarioController extends Controller
     }
     public function secretaria()
     {
-        return view('Admin/Creacion/Secretaria');
+        return view('Sistema/Creacion/Secretaria');
     }
     public function save_secre(Request $request)
     {
@@ -99,7 +99,7 @@ class UsuarioController extends Controller
     }
     public function admin()
     {
-        return view('Admin/Creacion/Administrador');
+        return view('Sistema/Creacion/Administrador');
     }
     public function save_admin(Request $request)
     {
@@ -133,7 +133,7 @@ class UsuarioController extends Controller
     }
     public function docente()
     {
-        return view('Admin/Creacion/Docente');
+        return view('Sistema/Creacion/Docente');
     }
     public function save_docente(Request $request)
     {
@@ -149,7 +149,7 @@ class UsuarioController extends Controller
         $user_id = Kardex::select('id')
             ->where('ci','=',$request->ci)
             ->get();
-        $u = new User;
+        $u = new User();
         $u->email            = $request->email;
         $u->password         = \Hash::make($request->ci);
         $u->tipo_usuario     = 2;
@@ -167,11 +167,11 @@ class UsuarioController extends Controller
     }
     public function estudiante()
     {
-        return view('Admin/Creacion/Estudiante');
+        return view('Sistema/Creacion/Estudiante');
     }
     public function modificar()
     {
-        return view('Admin/modificar');
+        return view('Sistema/modificar');
     }
     public function save_estudiante(Request $request)
     {

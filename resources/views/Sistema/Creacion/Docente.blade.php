@@ -1,10 +1,10 @@
-@extends('Plantilla/plantilla')
+@extends('Plantilla.plantilla')
 @section('titulo', 'Creacion de Usuario')
 @section('headerpage')
     <section class="content-header" xmlns="http://www.w3.org/1999/html">
         <h1 class="colorazul">
             SIS|TRAIN
-            <small class="colorazul">Creacion de Secretaria</small>
+            <small class="colorazul">Creacion de Docente</small>
         </h1>
     </section>
 @endsection
@@ -14,7 +14,7 @@
         <div class="row" >
             <div class="">
                 <div class="panel panel-default" id="headeremi">
-                    <div class="panel-heading text-center ">Creacion de Secretaria</div>
+                    <div class="panel-heading text-center ">Creacion de Docente</div>
                     <div class="panel-body">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -26,7 +26,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="post" class="form-horizontal" enctype="multipart/form-data" role="form"  action="{{ url('admin/secretaria/save')  }}"  >
+                        <form method="post" class="form-horizontal" enctype="multipart/form-data" role="form"  action="{{ url('sistema/docente/save')  }}"  >
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label for="nombres" class="col-md-4 control-label colorazul letragrande" style="font-size: 1.2em">Nombres</label>
@@ -105,21 +105,5 @@
 
             return /\d/.test(String.fromCharCode(keynum));
         }
-        $("#milico" ).change(function() {
-            if($('#milico').val('civil'))
-            {
-
-                $('#militar').fadeOut();
-                $('#esp').val('null');
-                $("#grado :selected").text('null');
-                $("#grado").val('null');
-                $("#fue :selected").text('null');
-                $("#fue").val('null');
-            }
-            if($('#milico').val('militar'))
-            {
-                $('#militar').show();
-            }
-        });
     </script>
 @endsection

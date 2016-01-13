@@ -39,14 +39,6 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::group(['prefix'=> 'sistema', 'namespace' => 'Sistema'], function()
 {
     Route::get('succes', 'LoginController@loginExitoso');
-});
-Route::filter('is_admin', function()
-{
-    if(Auth::user()->tipo_usuario != 3 ) return Redirect::to('/');
-});
-Route::group(['before' => 'is_admin', 'prefix'=> 'admin', 'namespace' => 'Admin'], function()
-{
-    Route::get('home', 'GeneralController@index');
     Route::get('crear/admin', 'UsuarioController@admin');
     Route::post('admin/save', 'UsuarioController@save_admin');
     Route::get('crear/docente', 'UsuarioController@docente');
@@ -58,6 +50,26 @@ Route::group(['before' => 'is_admin', 'prefix'=> 'admin', 'namespace' => 'Admin'
     Route::get('crear/director', 'UsuarioController@director');
     Route::post('director/save', 'UsuarioController@save_director');
     Route::get('modificar', 'UsuarioController@modificar');
+    //ACADEMICO
+    Route::get('crear/curso', 'AcademicoController@curso');
+    Route::post('curso/save', 'AcademicoController@save_curso');
+
+    Route::get('crear/materia', 'AcademicoController@materia');
+    Route::post('materia/save', 'AcademicoController@save_materia');
+
+    Route::get('crear/aula', 'AcademicoController@aula');
+    Route::post('aula/save', 'AcademicoController@save_aula');
+
+    Route::get('asignar/docente', 'AcademicoController@asignar_docente');
+    Route::post('asignar/save', 'AcademicoController@save_asignar');
+});
+Route::filter('is_admin', function()
+{
+    if(Auth::user()->tipo_usuario != 3 ) return Redirect::to('/');
+});
+Route::group(['before' => 'is_admin', 'prefix'=> 'admin', 'namespace' => 'Admin'], function()
+{
+    Route::get('home', 'GeneralController@index');
 });
 Route::filter('is_estudiante', function()
 {
