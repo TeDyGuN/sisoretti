@@ -57,7 +57,7 @@
             @endif
             @if(Auth::user()->tipo()=='Estudiante')
                 <li>
-                    <a href="{{ url('sistema/documentacion') }}">
+                    <a href="{{ url('estudiante/notas') }}">
                         <i class="fa fa-book"></i> <span>Notas</span>
                     </a>
                 </li>
@@ -126,6 +126,18 @@
                 </li>
             @endif
             @if(Auth::user()->tipo()=='Docente')
+                <li class="treeview">
+                    <a href="">
+                        <i class="fa fa-mortar-board "></i><span>Notas</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('docente/notas') }}"><i class="fa fa-circle-o"></i>Descargar Plantilla de Notas</a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('docente/subirNotas') }}"><i class="fa fa-circle-o"></i>Subir Plantilla de Notas</a></li>
+                    </ul>
+                </li>
             @endif
         </ul>
     </section>

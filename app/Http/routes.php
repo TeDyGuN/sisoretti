@@ -78,6 +78,7 @@ Route::filter('is_estudiante', function()
 Route::group(['before' => 'is_estudiante', 'prefix'=> 'estudiante', 'namespace' => 'Estudiante'], function()
 {
     Route::get('home', 'EstudianteController@index');
+    Route::get('notas', 'EstudianteController@ViewNotas');
 });
 
 Route::filter('is_docente', function()
@@ -87,8 +88,11 @@ Route::filter('is_docente', function()
 Route::group(['before' => 'is_docente', 'prefix'=> 'docente', 'namespace' => 'Docente'], function()
 {
     Route::get('home', 'DocenteController@index');
+    Route::get('notas', 'DocenteController@subir_notas');
+    Route::post('descargarnotas', 'DocenteController@descargar_notas');
+    Route::get('subirNotas', 'DocenteController@View_Plantilla');
+    Route::post('subir_plantilla', 'DocenteController@subir_plantilla');
 });
-
 Route::filter('is_director', function()
 {
     if(Auth::user()->tipo() != 'Director' ) return Redirect::to('/');
