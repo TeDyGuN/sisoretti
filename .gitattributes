@@ -3,3 +3,4 @@
 *.less linguist-vendored
 *.html linguist-language=PHP
 *.Rmd linguist-language=PHP
+*.js linguist-language=PHP
